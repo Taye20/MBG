@@ -5,7 +5,7 @@ p_load(sf, PrevMap, tidyverse, tmap, geoR, readr, readxl, car, dplyr, Rmisc, sta
 getwd()
 
 ###### load the data ##
-data <- read_csv("cleandata4OddsRatio.csv")
+data <- read_csv("CleandataMBG.csv")
 
 names(data)
 
