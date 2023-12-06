@@ -1,6 +1,6 @@
 ###Exploratory analysis
 require(pacman)
-p_load(sf, PrevMap, tidyverse, tmap, geoR, readr, readxl, car, dplyr, Rmisc, stargazer, mfx) ############ you do not have to install everything.
+p_load(sf, PrevMap, tidyverse, tmap, geoR, readr, readxl, car, dplyr, Rmisc, stargazer, mfx, arsenal) ############ you do not have to install everything.
 
 # get working directory
 getwd()
@@ -10,6 +10,15 @@ data <- read_csv("CleandataMBG.csv")
 
 names(data)
 
+#++++++++++++++++++++++++++++++++++++++++++++
+# Build summary statistics
+table_summary <- tableby(data$Mal_Outcome ~ ., data = data, cat.test="chisq")
+summary (table_summary, title = "U5 Malaria Summary")
+
+# export result 
+write2word(table_summary, "~/U5MSummary.doc", title="U5 Malaria Summary")
+
+# Build logistic model
 d2 <- glm(Mal_Outcome ~ ., data = data, family = "binomial")
 
 summary(d2)
