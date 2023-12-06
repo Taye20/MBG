@@ -6,7 +6,7 @@ p_load(tidyverse, readr, readxl, car, dplyr, caret)
 getwd()
 
 ###### load the data ##
-data3 <- read_csv("cleandataMBG_CrossValidation1.csv")
+data3 <- read_csv("cleandataMBG.csv")
 
 
 
