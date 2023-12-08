@@ -131,13 +131,14 @@ pred.MCML <- spatial.pred.binomial.MCML(object = fit.MCML2, grid.pred = grid.pre
 par(mfrow = c(1,3))
 plot(pred.MCML, type = "prevalence",
      summary = "predictions", 
-     main = "October Prevalence - predictions enhanced with Covariates \n (classical analysis)")
+     main = "Malaria Prevalence - predictions enhanced with Covariates \n (classical analysis)")
 
 contour(pred.MCML, type = "prevalence", summary = "predictions",
         levels = c(0.2, 0.25, 0.3), add = TRUE)
 
 plot(pred.MCML, type = "prevalence",
-     summary = "standard.errors", zlim = c(0,0.3),main = "October Prevalence - standard errors \n (classical analysis)")
+     summary = "standard.errors", zlim = c(0,0.3),main = "Malaria Prevalence - standard errors \n (classical analysis)")
+
 plot(pred.MCML, summary = "exceedance.prob",
      zlim = c(0,1),
-     main = "October Prevalence  - exceedance probabilities enhanced with Covariates \n (classical analysis)")
+     main = "Malaria Prevalence  - exceedance probabilities enhanced with Covariates \n (classical analysis)")
