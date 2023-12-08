@@ -1,3 +1,4 @@
+#Load package
 require(pacman)
 p_load(sf, PrevMap, tidyverse, tmap, geoR, readr, readxl, car, dplyr)   ############ you do not have to install everything.
 
