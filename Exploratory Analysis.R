@@ -11,7 +11,7 @@ data <- read_csv("CleandataMBG.csv")
 names(data)
 
 #++++++++++++++++++++++++++++++++++++++++++++
-# Build summary statistics
+# Build summary statistics 
 table_summary <- tableby(data$Mal_Outcome ~ ., data = data, cat.test="chisq")
 summary (table_summary, title = "U5 Malaria Summary")
 
