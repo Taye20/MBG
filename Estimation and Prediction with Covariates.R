@@ -128,7 +128,7 @@ pred.MCML <- spatial.pred.binomial.MCML(object = fit.MCML2, grid.pred = grid.pre
                                         standard.errors = TRUE, thresholds = 0.1,
                                         scale.thresholds = "prevalence")
 
-
+##Plot results
 par(mfrow = c(1,3))
 plot(pred.MCML, type = "prevalence",
      summary = "predictions", 
@@ -140,6 +140,36 @@ contour(pred.MCML, type = "prevalence", summary = "predictions",
 plot(pred.MCML, type = "prevalence",
      summary = "standard.errors", zlim = c(0,0.3),main = "Malaria Prevalence - standard errors \n (classical analysis)")
 
+contour(pred.MCML, type = "prevalence", summary = "standard.errors",
+        levels = c(0.2, 0.25, 0.3), add = TRUE)
+
 plot(pred.MCML, summary = "exceedance.prob",
      zlim = c(0,1),
      main = "Malaria Prevalence  - exceedance probabilities enhanced with Covariates \n (classical analysis)")
+
+contour(pred.MCML, summary = "exceedance.prob",
+        levels = c(0.2, 0.25, 0.3), add = TRUE)
+
+####### Diagnostics plots. check the convergence of the MCMC
+par(mfrow=c(3,3))
+S.mean <- apply(pred.MCML$samples, 2, mean)
+acf(S.mean,main = "")
+plot(S.mean,type = "l")
+plot(ecdf(S.mean[1:1000]), main = "")
+lines(ecdf(S.mean[401:1000]), col = 2, lty = "dashed")
+
+
+ind.S <- sample(1:nrow(grid.pred), 2)
+acf(pred.MCML$samples[ind.S[1],], main = "")
+plot(pred.MCML$samples[ind.S[1], ],
+     ylab = paste("Component n.", ind.S[1]), type = "l")
+plot(ecdf(pred.MCML$samples[ind.S[1], 1:1000]), main = "")
+lines(ecdf(pred.MCML$samples[ind.S[1], 401:1000]),
+      col = 2, lty = "dashed")
+
+acf(pred.MCML$samples[ind.S[2],], main = "")
+plot(pred.MCML$samples[ind.S[2], ],
+     ylab = paste("Component n.", ind.S[2]), type = "l")
+plot(ecdf(pred.MCML$samples[ind.S[2], 1:1000]), main = "")
+lines(ecdf(pred.MCML$samples[ind.S[2], 401:1000]),
+      col = 2, lty = "dashed")  
