@@ -1,4 +1,4 @@
-#NEW
+##Cross validation to determine reliability of the GLM model. 
 require(pacman)
 p_load(tidyverse, readr, readxl, car, dplyr, caret)
 
