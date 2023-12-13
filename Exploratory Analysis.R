@@ -1,4 +1,4 @@
-###Exploratory analysis
+###Exploratory analysis for table summary, GLM and odds ratio
 #Load packages
 require(pacman)
 p_load(sf, PrevMap, tidyverse, tmap, geoR, readr, readxl, car, dplyr, Rmisc, stargazer, mfx, arsenal) ############ you do not have to install everything.
