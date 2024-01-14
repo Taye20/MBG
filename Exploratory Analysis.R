@@ -23,13 +23,29 @@ d2 <- glm(Mal_Outcome ~ ., data = data, family = "binomial")
 
 summary(d2)
 
+# Check for the best-fit model
+stepAIC(d2, direction = c("both", "backward", "forward"), k = 5)
+
+# Build the best model with the least AIC
 d3 <- glm(data$Mal_Outcome ~ data$WaterSource + data$Bed_net_Usg + data$Win_Protctn, family = "binomial")
 
 summary(d3)
 
+# Check for multicollinearity (VIF)
+vif(glm(data$Mal_Outcome ~ data$WaterSource + data$Bed_net_Usg + data$Win_Protctn, data = data, family = "binomial"))
+
+alias(glm(data$Mal_Outcome ~ data$WaterSource + data$Bed_net_Usg + data$Win_Protctn, data = data, family = "binomial"))
+
+vif_values = vif(d3)
+
+# Plot VIF
+barplot(vif_values, main = "VIF Values", horiz = TRUE, col = "steelblue") #create horizontal bar chart to display each VIF value
+
+abline(v = 1, lwd = 3, lty = 2)    #add vertical line at 1 to low absence of multicollinearity 
+abline(v = 5, lwd = 3, lty = 2)    #add a vertical line at 5 to check high correlation or multicollinearity  
+
 # Confidenceinterval for Estimates
 confint(d3)
-
 
 # Confidence interval for OR
 exp(cbind("Odds ratio" = coef(d3), confint.default(d3, level = 0.95)))
